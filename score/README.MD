@@ -1,0 +1,1 @@
+ZREVRANGE user_scores 0 4 WITHSCORES
