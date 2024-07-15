@@ -5,6 +5,7 @@ import com.gaming.score.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public class ScoreController {
     private ScoreService scoreService;
 
     @GetMapping("top-five")
-    public List<User> getTopFiveScores() {
-        return scoreService.getTopScores();
+    public List<User> getTopFiveScores(@RequestParam String type) {
+        return scoreService.getTopScores(type);
     }
 
 }

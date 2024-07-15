@@ -16,4 +16,6 @@ public class User {
 
     private Long score;
 
+    private String type;
+
 }
