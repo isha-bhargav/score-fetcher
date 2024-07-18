@@ -8,7 +8,7 @@ import java.util.List;
 @Repository("defaultDao")
 public class DefaultScoreRepository extends ScoreRepository{
     @Override
-    public List<User> fetchTopFiveScores() {
+    public List<User> fetchTopFiveScores(Integer topK) {
         return null;
     }
 }

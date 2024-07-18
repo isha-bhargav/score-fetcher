@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public abstract class ScoreRepository {
-    public abstract List<User> fetchTopFiveScores();
+    public abstract List<User> fetchTopFiveScores(Integer topK);
 }

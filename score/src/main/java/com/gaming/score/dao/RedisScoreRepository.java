@@ -20,9 +20,9 @@ public class RedisScoreRepository extends ScoreRepository{
     private StringRedisTemplate redisTemplate;
     @Override
 //    @Retryable(retryFor = {DbException.class }, maxAttempts = 3, backoff = @Backoff(2000))
-    public List<User> fetchTopFiveScores() {
+    public List<User> fetchTopFiveScores(Integer topK) {
         try {
-            Set<ZSetOperations.TypedTuple<String>> topScores = redisTemplate.opsForZSet().reverseRangeWithScores(REDIS_USER_SCORE_KEY, 0, 4);
+            Set<ZSetOperations.TypedTuple<String>> topScores = redisTemplate.opsForZSet().reverseRangeWithScores(REDIS_USER_SCORE_KEY, 0, topK-1);
             return topScores.stream()
                     .map(tuple -> new User(tuple.getValue(), tuple.getScore().longValue()))
                     .toList();

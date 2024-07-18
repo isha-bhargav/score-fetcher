@@ -3,7 +3,6 @@ package com.gaming.score.dao;
 import com.gaming.score.exception.CommonException;
 import com.gaming.score.exception.DbException;
 import com.gaming.score.model.User;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -53,7 +52,7 @@ public class RedisScoreRepositoryTest {
         });
         Mockito.when(zSetOperations.reverseRangeWithScores(Mockito.anyString(), Mockito.eq(0L), Mockito.eq(4L))).thenReturn(topScores);
 
-        List<User> users = repository.fetchTopFiveScores();
+        List<User> users = repository.fetchTopFiveScores(5);
 
         assert(users.size() == 1);
         assert(users.get(0).getUserId().equals("user1"));
@@ -67,7 +66,7 @@ public class RedisScoreRepositoryTest {
         Mockito.when(zSetOperations.reverseRangeWithScores(Mockito.anyString(), Mockito.eq(0L), Mockito.eq(4L)))
                 .thenThrow(new DataAccessException("Data access error") {});
 
-            repository.fetchTopFiveScores();
+            repository.fetchTopFiveScores(5);
     }
 
     @Test(expected = CommonException.class)
@@ -78,7 +77,7 @@ public class RedisScoreRepositoryTest {
                 .thenThrow(new RuntimeException("Unexpected error"));
 
 
-            repository.fetchTopFiveScores();
+            repository.fetchTopFiveScores(5);
 
     }
 }

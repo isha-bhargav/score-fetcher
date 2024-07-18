@@ -39,7 +39,7 @@ public class ScoreControllerTest {
                 add(user5);
             }
         };
-        Mockito.when(service.getTopScores("redis")).thenReturn(userList);
-        Assert.assertEquals(userList, controller.getTopFiveScores("redis"));
+        Mockito.when(service.getTopScores("redis", 5)).thenReturn(userList);
+        Assert.assertEquals(userList, controller.getTopFiveScores("redis",5));
     }
 }

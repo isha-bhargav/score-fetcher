@@ -44,8 +44,8 @@ public class ScoreServiceTest {
         RedisScoreRepository repository= Mockito.mock(RedisScoreRepository.class);
 
         Mockito.when(factory.getScoreRepository("redis")).thenReturn(repository);
-        Mockito.when(repository.fetchTopFiveScores()).thenReturn(userList);
-        Assert.assertEquals(userList, scoreService.getTopScores("redis"));
+        Mockito.when(repository.fetchTopFiveScores(5)).thenReturn(userList);
+        Assert.assertEquals(userList, scoreService.getTopScores("redis",5));
 
     }
 }

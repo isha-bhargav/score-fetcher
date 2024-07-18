@@ -14,9 +14,9 @@ public class RedisConfig {
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
         LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory();
-        lettuceConnectionFactory.setHostName("host");
+        lettuceConnectionFactory.setHostName("gaming-score.redis.cache.windows.net");
         lettuceConnectionFactory.setPort(6379);
-        lettuceConnectionFactory.setPassword("pwd");
+        lettuceConnectionFactory.setPassword("P81kpMhgkQsrHV70l7UL2quwj41pNi0VbAzCaHTQmj8=");
         return lettuceConnectionFactory;
     }
 

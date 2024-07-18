@@ -16,19 +16,15 @@ import static com.gaming.score.utils.Constants.REDIS_USER_SCORE_KEY;
 @Service
 public class ScoreService {
 
-//    @Autowired
-//    private StringRedisTemplate redisTemplate;
+
 
 @Autowired
 private RepositoryFactory repositoryFactory;
 
-    public List<User> getTopScores(String type) {
+    public List<User> getTopScores(String type, Integer topK) {
         ScoreRepository repository = repositoryFactory.getScoreRepository(type);
-       return repository.fetchTopFiveScores();
-//        Set<ZSetOperations.TypedTuple<String>> topScores = redisTemplate.opsForZSet().reverseRangeWithScores(REDIS_USER_SCORE_KEY, 0, 4);
-//        return topScores.stream()
-//                .map(tuple -> new User(tuple.getValue(), tuple.getScore().longValue()))
-//                .toList();
+       return repository.fetchTopFiveScores(topK);
+
     }
 
 }
