@@ -27,6 +27,8 @@ public class KafkaConsumer {
             ObjectMapper objectMapper = new ObjectMapper();
             User user = objectMapper.readValue(message, User.class);
             scoreService.addScore(user.getUserId(), user.getScore(), user.getType());
+            log.info("User {}",user.getUserId());
+
         } catch (Exception e) {
             log.error("Exception Occurred - {}", e.getMessage());
         }

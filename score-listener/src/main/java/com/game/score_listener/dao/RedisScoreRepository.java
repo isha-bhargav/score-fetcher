@@ -18,13 +18,13 @@ public class RedisScoreRepository extends ScoreRepository{
     private StringRedisTemplate redisTemplate;
 
     @Override
-    @Retryable(retryFor = {DbException.class }, maxAttempts = 3, backoff = @Backoff(2000))
+    @Retryable(value = {DbException.class }, maxAttempts = 3, backoff = @Backoff(2000))
     public void saveScore(String userId, double score) {
         try {
             redisTemplate.opsForZSet().add(REDIS_USER_SCORE_KEY, userId, score);
         }
         catch (DataAccessException e){
-            throw new DbException("Error while saving score to redis");
+            throw new DbException("Error while saving score to redis "+e.getCause());
         }
         catch (Exception e)
         {
