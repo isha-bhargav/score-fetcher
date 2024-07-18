@@ -28,12 +28,12 @@ public class RedisScoreRepository extends ScoreRepository{
                     .toList();
         }catch (DataAccessException dataAccessException)
         {
-            throw new DbException("Error while fetching score to redis");
+            throw new DbException("Error while fetching score to redis" + dataAccessException.getCause());
 
         }
         catch (Exception e)
         {
-            throw new CommonException("Error while fetching score to redis");
+            throw new CommonException("Error while fetching score to redis"+e.getCause());
         }
     }
 }
